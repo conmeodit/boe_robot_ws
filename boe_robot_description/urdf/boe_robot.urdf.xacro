@@ -3,36 +3,94 @@
   xmlns:xacro="http://www.ros.org/wiki/xacro"
   name="boe_robot">
 
-  <!-- Màu sắc -->
+  <!-- Các thông số chính của robot -->
+  <xacro:property name="wheel_radius" value="0.03272"/>
+  <xacro:property name="wheel_separation" value="0.115"/>
+
+  <!-- Màu thân xe -->
   <material name="body_color">
     <color rgba="0.796 0.824 0.937 1.0"/>
   </material>
 
+  <!-- Màu bánh xe -->
+  <material name="wheel_color">
+    <color rgba="0.12 0.12 0.12 1.0"/>
+  </material>
+
   <!--
-    base_footprint là hình chiếu của tâm robot xuống mặt đất.
-    Link này không có hình dạng và không có khối lượng.
+    base_footprint nằm trên mặt đất,
+    ở gần tâm giữa hai bánh chủ động.
   -->
   <link name="base_footprint"/>
 
   <!--
-    Đưa base_link lên khỏi mặt đất khoảng 32.2 mm.
-    Giá trị này được tính gần đúng từ bán kính bánh xe.
+    Dịch base_link so với tâm hai bánh:
+    x = -0.03193 m
+    y =  0.004294 m
+    z =  0.03215 m
   -->
   <joint name="base_footprint_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
-    <origin xyz="0 0 0.0322" rpy="0 0 0"/>
+    <origin
+      xyz="-0.0319316266 0.0042939669 0.03215"
+      rpy="0 0 0"/>
   </joint>
 
-  <!-- Khung thân chính của robot -->
+  <!-- Thân xe -->
   <link name="base_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://boe_robot_description/meshes/base_link.STL"/>
+        <mesh
+          filename="package://boe_robot_description/meshes/base_link.STL"/>
       </geometry>
       <material name="body_color"/>
     </visual>
   </link>
+
+  <!-- Bánh chủ động bên trái -->
+  <link name="wheel_left_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://boe_robot_description/meshes/wheel_left_link.STL"/>
+      </geometry>
+      <material name="wheel_color"/>
+    </visual>
+  </link>
+
+  <joint name="wheel_left_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_left_link"/>
+    <origin
+      xyz="0.0329316266 0.0532060331 0.0005737626"
+      rpy="1.5707963268 0 3.1415926536"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1.0" velocity="20.0"/>
+  </joint>
+
+  <!-- Bánh chủ động bên phải -->
+  <link name="wheel_right_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://boe_robot_description/meshes/wheel_right_link.STL"/>
+      </geometry>
+      <material name="wheel_color"/>
+    </visual>
+  </link>
+
+  <joint name="wheel_right_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_right_link"/>
+    <origin
+      xyz="0.0309316266 -0.0617939669 0.0005737626"
+      rpy="1.5707963268 0 0"/>
+    <axis xyz="0 0 -1"/>
+    <limit effort="1.0" velocity="20.0"/>
+  </joint>
 
 </robot>
