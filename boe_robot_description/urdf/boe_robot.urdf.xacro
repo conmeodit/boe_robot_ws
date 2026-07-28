@@ -5,6 +5,7 @@
 
   <!-- Các thông số chính của robot -->
   <xacro:property name="wheel_radius" value="0.03272"/>
+  <xacro:property name="wheel_width" value="0.00975"/>
   <xacro:property name="wheel_separation" value="0.115"/>
 
   <!-- Màu thân xe -->
@@ -37,8 +38,9 @@
       rpy="0 0 0"/>
   </joint>
 
-  <!-- Thân xe -->
+    <!-- Thân xe -->
   <link name="base_link">
+    <!-- Hình dạng hiển thị -->
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -47,10 +49,36 @@
       </geometry>
       <material name="body_color"/>
     </visual>
+
+    <!-- Hình dạng dùng để tính va chạm -->
+    <collision>
+      <origin
+        xyz="-0.0018954 -0.0042940 0.0018238"
+        rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1209 0.1150 0.0335"/>
+      </geometry>
+    </collision>
+
+    <!-- Khối lượng và mô-men quán tính -->
+    <inertial>
+      <origin
+        xyz="0.0154452 -0.0042940 0.0038704"
+        rpy="0 0 0"/>
+      <mass value="0.0814944"/>
+      <inertia
+        ixx="2.7770132e-05"
+        ixy="0.0"
+        ixz="1.0575890e-06"
+        iyy="4.2579467e-05"
+        iyz="0.0"
+        izz="6.3174700e-05"/>
+    </inertial>
   </link>
 
-  <!-- Bánh chủ động bên trái -->
+    <!-- Bánh chủ động bên trái -->
   <link name="wheel_left_link">
+    <!-- Hình dạng hiển thị -->
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -59,6 +87,29 @@
       </geometry>
       <material name="wheel_color"/>
     </visual>
+
+    <!-- Hình trụ dùng để tính tiếp xúc với mặt đất -->
+    <collision>
+      <origin xyz="0 0 -0.002125" rpy="0 0 0"/>
+      <geometry>
+        <cylinder
+          radius="${wheel_radius}"
+          length="${wheel_width}"/>
+      </geometry>
+    </collision>
+
+    <!-- Thông số vật lý bánh trái -->
+    <inertial>
+      <origin xyz="0 0 -0.0014620" rpy="0 0 0"/>
+      <mass value="0.0130643"/>
+      <inertia
+        ixx="4.3289310e-06"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="4.3289308e-06"
+        iyz="0.0"
+        izz="8.5765717e-06"/>
+    </inertial>
   </link>
 
   <joint name="wheel_left_joint" type="continuous">
@@ -73,6 +124,7 @@
 
   <!-- Bánh chủ động bên phải -->
   <link name="wheel_right_link">
+    <!-- Hình dạng hiển thị -->
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -81,6 +133,29 @@
       </geometry>
       <material name="wheel_color"/>
     </visual>
+
+    <!-- Hình trụ dùng để tính tiếp xúc với mặt đất -->
+    <collision>
+      <origin xyz="0 0 -0.002125" rpy="0 0 0"/>
+      <geometry>
+        <cylinder
+          radius="${wheel_radius}"
+          length="${wheel_width}"/>
+      </geometry>
+    </collision>
+
+    <!-- Thông số vật lý bánh phải -->
+    <inertial>
+      <origin xyz="0 0 -0.0014620" rpy="0 0 0"/>
+      <mass value="0.0130643"/>
+      <inertia
+        ixx="4.3289310e-06"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="4.3289308e-06"
+        iyz="0.0"
+        izz="8.5765717e-06"/>
+    </inertial>
   </link>
 
   <joint name="wheel_right_joint" type="continuous">
