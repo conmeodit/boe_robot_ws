@@ -92,5 +92,71 @@
     <axis xyz="0 0 -1"/>
     <limit effort="1.0" velocity="20.0"/>
   </joint>
+  <!-- ====================================================== -->
+  <!-- Cụm bánh caster                                       -->
+  <!-- ====================================================== -->
 
+  <!-- Đế caster được gắn cố định với thân robot -->
+  <link name="caster_base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://boe_robot_description/meshes/caster_base_link.STL"/>
+      </geometry>
+      <material name="body_color"/>
+    </visual>
+  </link>
+
+  <joint name="caster_base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_base_link"/>
+    <origin
+      xyz="-0.0049954073 -0.0042939669 0.0185737626"
+      rpy="0 0 0"/>
+  </joint>
+
+  <!-- Phần caster có thể tự xoay theo hướng chuyển động -->
+  <link name="caster_rotation_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://boe_robot_description/meshes/caster_rotation_link.STL"/>
+      </geometry>
+      <material name="body_color"/>
+    </visual>
+  </link>
+
+  <joint name="caster_rotation_joint" type="continuous">
+    <parent link="caster_base_link"/>
+    <child link="caster_rotation_link"/>
+    <origin
+      xyz="-0.0361714130 0 -0.0106540966"
+      rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.5" velocity="10.0"/>
+  </joint>
+
+  <!-- Bánh caster có thể lăn tự do -->
+  <link name="caster_wheel_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://boe_robot_description/meshes/caster_wheel_link.STL"/>
+      </geometry>
+      <material name="wheel_color"/>
+    </visual>
+  </link>
+
+  <joint name="caster_wheel_joint" type="continuous">
+    <parent link="caster_rotation_link"/>
+    <child link="caster_wheel_link"/>
+    <origin
+      xyz="0.0179800159 0.0039088610 -0.023"
+      rpy="-1.5707963268 0 0"/>
+    <axis xyz="-0.0665291474 0 0.9977844820"/>
+    <limit effort="0.5" velocity="20.0"/>
+  </joint>
 </robot>
