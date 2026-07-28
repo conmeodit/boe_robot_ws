@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot
+  xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="boe_robot">
+
+  <!-- Màu sắc -->
+  <material name="body_color">
+    <color rgba="0.796 0.824 0.937 1.0"/>
+  </material>
+
+  <!--
+    base_footprint là hình chiếu của tâm robot xuống mặt đất.
+    Link này không có hình dạng và không có khối lượng.
+  -->
+  <link name="base_footprint"/>
+
+  <!--
+    Đưa base_link lên khỏi mặt đất khoảng 32.2 mm.
+    Giá trị này được tính gần đúng từ bán kính bánh xe.
+  -->
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.0322" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Khung thân chính của robot -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://boe_robot_description/meshes/base_link.STL"/>
+      </geometry>
+      <material name="body_color"/>
+    </visual>
+  </link>
+
+</robot>

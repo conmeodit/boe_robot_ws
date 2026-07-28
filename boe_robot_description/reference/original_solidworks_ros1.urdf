@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="description_boe_robot">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0154452321358035 -0.00429396691401962 0.00387040357248396"
+        rpy="0 0 0" />
+      <mass
+        value="0.0814944174338659" />
+      <inertia
+        ixx="2.77701318724521E-05"
+        ixy="1.97464555828659E-20"
+        ixz="1.05758896470281E-06"
+        iyy="4.25794671622108E-05"
+        iyz="1.30100984374647E-21"
+        izz="6.31746995127737E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.823529411764706 0.937254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="imu_link">
+    <inertial>
+      <origin
+        xyz="-8.67361737988404E-19 -6.47004260220536E-05 0.000488343705367661"
+        rpy="0 0 0" />
+      <mass
+        value="0.000302850245192701" />
+      <inertia
+        ixx="6.03209693376082E-09"
+        ixy="-1.40571478543284E-24"
+        ixz="-3.4624216232143E-26"
+        iyy="9.48650699122206E-09"
+        iyz="-8.977554429944E-13"
+        izz="1.54683861524513E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/imu_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.666666666666667 0.698039215686274 0.768627450980392 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/imu_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="imu_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00264539544925994 -0.00404828457544198 0.0145737626289683"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="imu_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="0.00386342963440182 0.000221880625381836 -0.00554963797433405"
+        rpy="0 0 0" />
+      <mass
+        value="0.165382751635991" />
+      <inertia
+        ixx="7.88455572217802E-05"
+        ixy="2.72193273405133E-07"
+        ixz="2.17895059451142E-06"
+        iyy="7.52099178826257E-05"
+        iyz="1.6227741264163E-07"
+        izz="0.000109946753058707" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 0.4" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/lidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00707231077794026 -0.00456530192940025 0.0434219486627164"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="2.6346859077527E-05 -0.000162517733785993 -0.00695925724255319"
+        rpy="0 0 0" />
+      <mass
+        value="0.00154849051596779" />
+      <inertia
+        ixx="6.15276310368582E-08"
+        ixy="3.76651168163259E-10"
+        ixz="1.55536718669188E-11"
+        iyy="5.63302052123382E-08"
+        iyz="2.74799408025976E-09"
+        izz="9.81439425205818E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/camera_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.0683011340637784 -0.00429396691401961 0.00747516262896837"
+      rpy="1.57079632679489 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wheel_left_link">
+    <inertial>
+      <origin
+        xyz="0 2.99239799605999E-17 -0.00146203502298485"
+        rpy="0 0 0" />
+      <mass
+        value="0.0130642793486274" />
+      <inertia
+        ixx="4.32893090293568E-06"
+        ixy="-1.73123421255402E-13"
+        ixz="4.32193713260435E-22"
+        iyy="4.32893075375732E-06"
+        iyz="-3.19515020905153E-22"
+        izz="8.57657172030877E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/wheel_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.294117647058824 0.294117647058824 0.294117647058824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/wheel_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.0329316266102712 0.0532060330859804 0.000573762628968332"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_left_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel_right_link">
+    <inertial>
+      <origin
+        xyz="4.5102810375397E-17 -4.81678499170135E-15 -0.00146203502299087"
+        rpy="0 0 0" />
+      <mass
+        value="0.0130642793486274" />
+      <inertia
+        ixx="4.3289310056521E-06"
+        ixy="6.40155687447485E-14"
+        ixz="9.80173896029164E-23"
+        iyy="4.32893065104092E-06"
+        iyz="3.75374289201231E-23"
+        izz="8.57657172030878E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/wheel_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.823529411764706 0.937254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/wheel_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_right_joint"
+    type="continuous">
+    <origin
+      xyz="0.0309316266102712 -0.0617939669140257 0.000573762628973176"
+      rpy="1.57079632679489 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_right_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="caster_base_link">
+    <inertial>
+      <origin
+        xyz="-0.0361714949845476 6.93889390390723E-18 -0.00306583313543687"
+        rpy="0 0 0" />
+      <mass
+        value="0.00301249719132024" />
+      <inertia
+        ixx="3.91041727158654E-07"
+        ixy="-1.05023878087793E-23"
+        ixz="-2.9056564408468E-13"
+        iyy="2.0299201462166E-07"
+        iyz="1.33649377545487E-21"
+        izz="5.88569569990756E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/caster_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/caster_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_base_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00499540728697256 -0.00429396691401961 0.0185737626289683"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster_rotation_link">
+    <inertial>
+      <origin
+        xyz="0.00809806662782948 0.0017544669924977 -0.00723990774181101"
+        rpy="0 0 0" />
+      <mass
+        value="0.0011340233276086" />
+      <inertia
+        ixx="1.76275656219811E-07"
+        ixy="-8.33448157331285E-09"
+        ixz="3.75746019906288E-08"
+        iyy="2.12881422659518E-07"
+        iyz="8.15035493585826E-09"
+        izz="2.20801145580476E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/caster_rotation_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/caster_rotation_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_rotation_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0361714129632673 0 -0.0106540965605051"
+      rpy="0 0 0" />
+    <parent
+      link="caster_base_link" />
+    <child
+      link="caster_rotation_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="caster_wheel_link">
+    <inertial>
+      <origin
+        xyz="-2.20234605976047E-06 1.73472347597681E-18 1.01645028791014E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00767892497936741" />
+      <inertia
+        ixx="8.33850198907398E-07"
+        ixy="3.98857470286221E-23"
+        ixz="-1.22638516465876E-07"
+        iyy="8.07278072682819E-07"
+        iyz="1.3924337635922E-21"
+        izz="1.37329245910549E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/caster_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://description_boe_robot/meshes/caster_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.0179800158640037 0.0039088609692781 -0.0230000000000002"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="caster_rotation_link" />
+    <child
+      link="caster_wheel_link" />
+    <axis
+      xyz="-0.0665291474344724 0 0.997784482010841" />
+  </joint>
+</robot>
