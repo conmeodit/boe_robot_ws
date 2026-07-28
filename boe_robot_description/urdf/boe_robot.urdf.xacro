@@ -159,4 +159,32 @@
     <axis xyz="-0.0665291474 0 0.9977844820"/>
     <limit effort="0.5" velocity="20.0"/>
   </joint>
+    <!-- ====================================================== -->
+  <!-- LiDAR 2D                                               -->
+  <!-- ====================================================== -->
+
+  <material name="lidar_color">
+    <color rgba="0.15 0.15 0.15 1.0"/>
+  </material>
+
+  <!-- Phần thân của cảm biến LiDAR -->
+  <link name="lidar_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://boe_robot_description/meshes/lidar_link.STL"/>
+      </geometry>
+      <material name="lidar_color"/>
+    </visual>
+  </link>
+
+  <!-- LiDAR được gắn cố định trên thân xe -->
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <origin
+      xyz="-0.0070723108 -0.0045653019 0.0434219487"
+      rpy="0 0 0"/>
+  </joint>
 </robot>
