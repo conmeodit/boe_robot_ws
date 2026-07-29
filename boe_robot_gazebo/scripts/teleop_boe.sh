@@ -33,7 +33,7 @@ set +e
 ros2 run teleop_twist_keyboard teleop_twist_keyboard \
   --ros-args \
   -p speed:=0.05 \
-  -p turn:=0.5
+  -p turn:=0.2
 status=$?
 set -e
 

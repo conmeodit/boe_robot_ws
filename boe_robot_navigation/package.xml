@@ -1,34 +1,23 @@
 <?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>boe_robot_gazebo</name>
+  <name>boe_robot_navigation</name>
   <version>0.0.1</version>
-
   <description>
-    Gazebo simulation package for the BOE differential drive robot.
+    SLAM, localization and navigation configuration for the BOE robot.
   </description>
-
-  <maintainer email="linhpc@example.com">
-    linhpc
-  </maintainer>
-
+  <maintainer email="198187881+conmeodit@users.noreply.github.com">linhpc</maintainer>
   <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>gazebo_dev</depend>
-  <depend>gazebo_ros</depend>
-  <depend>geometry_msgs</depend>
-  <depend>rclcpp</depend>
-  <depend>sensor_msgs</depend>
-
   <exec_depend>ament_index_python</exec_depend>
-  <exec_depend>boe_robot_description</exec_depend>
-  <exec_depend>gazebo_plugins</exec_depend>
+  <exec_depend>boe_robot_gazebo</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
   <exec_depend>rviz2</exec_depend>
-  <exec_depend>xacro</exec_depend>
+  <exec_depend>slam_toolbox</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
