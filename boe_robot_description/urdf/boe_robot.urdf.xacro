@@ -78,21 +78,22 @@
     </inertial>
   </link>
 
-    <!-- Bánh chủ động bên trái -->
+  <!-- Bánh chủ động bên trái -->
   <link name="wheel_left_link">
-    <!-- Hình dạng hiển thị -->
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963268 0 0"/>
       <geometry>
-        <mesh
-          filename="package://boe_robot_description/meshes/wheel_left_link.STL"/>
+        <mesh filename="package://boe_robot_description/meshes/wheel_left_link.STL"/>
       </geometry>
       <material name="wheel_color"/>
     </visual>
 
-    <!-- Hình trụ dùng để tính tiếp xúc với mặt đất -->
     <collision>
-      <origin xyz="0 0 -0.002125" rpy="0 0 0"/>
+      <origin
+        xyz="0 0.002125 0"
+        rpy="1.5707963268 0 0"/>
       <geometry>
         <cylinder
           radius="${wheel_radius}"
@@ -100,9 +101,10 @@
       </geometry>
     </collision>
 
-    <!-- Thông số vật lý bánh trái -->
     <inertial>
-      <origin xyz="0 0 -0.0014620" rpy="0 0 0"/>
+      <origin
+        xyz="0 0.0014620 0"
+        rpy="1.5707963268 0 0"/>
       <mass value="0.0130643"/>
       <inertia
         ixx="4.3289310e-06"
@@ -119,26 +121,27 @@
     <child link="wheel_left_link"/>
     <origin
       xyz="0.0329316266 0.0532060331 0.0005737626"
-      rpy="1.5707963268 0 3.1415926536"/>
-    <axis xyz="0 0 1"/>
+      rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
     <limit effort="1.0" velocity="20.0"/>
   </joint>
 
   <!-- Bánh chủ động bên phải -->
   <link name="wheel_right_link">
-    <!-- Hình dạng hiển thị -->
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="-1.5707963268 0 0"/>
       <geometry>
-        <mesh
-          filename="package://boe_robot_description/meshes/wheel_right_link.STL"/>
+        <mesh filename="package://boe_robot_description/meshes/wheel_right_link.STL"/>
       </geometry>
       <material name="wheel_color"/>
     </visual>
 
-    <!-- Hình trụ dùng để tính tiếp xúc với mặt đất -->
     <collision>
-      <origin xyz="0 0 -0.002125" rpy="0 0 0"/>
+      <origin
+        xyz="0 -0.002125 0"
+        rpy="-1.5707963268 0 0"/>
       <geometry>
         <cylinder
           radius="${wheel_radius}"
@@ -146,9 +149,10 @@
       </geometry>
     </collision>
 
-    <!-- Thông số vật lý bánh phải -->
     <inertial>
-      <origin xyz="0 0 -0.0014620" rpy="0 0 0"/>
+      <origin
+        xyz="0 -0.0014620 0"
+        rpy="-1.5707963268 0 0"/>
       <mass value="0.0130643"/>
       <inertia
         ixx="4.3289310e-06"
@@ -165,15 +169,15 @@
     <child link="wheel_right_link"/>
     <origin
       xyz="0.0309316266 -0.0617939669 0.0005737626"
-      rpy="1.5707963268 0 0"/>
-    <axis xyz="0 0 -1"/>
+      rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
     <limit effort="1.0" velocity="20.0"/>
   </joint>
   <!-- ====================================================== -->
   <!-- Cụm bánh caster                                       -->
   <!-- ====================================================== -->
 
-  <!-- Đế caster được gắn cố định với thân robot -->
+  <!-- Đế caster gắn cố định với thân robot -->
   <link name="caster_base_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -265,7 +269,9 @@
   <!-- Bánh caster có thể lăn tự do -->
   <link name="caster_wheel_link">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="-1.5707963268 0 0"/>
       <geometry>
         <mesh
           filename="package://boe_robot_description/meshes/caster_wheel_link.STL"/>
@@ -274,7 +280,9 @@
     </visual>
 
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="-1.5707963268 0 0"/>
       <geometry>
         <cylinder
           radius="${caster_wheel_radius}"
@@ -284,8 +292,8 @@
 
     <inertial>
       <origin
-        xyz="-0.0000022 0 0.0000102"
-        rpy="0 0 0"/>
+        xyz="-0.0000022 0.0000102 0"
+        rpy="-1.5707963268 0 0"/>
       <mass value="0.0076789"/>
       <inertia
         ixx="8.3385020e-07"
@@ -302,12 +310,13 @@
     <child link="caster_wheel_link"/>
     <origin
       xyz="0.0179800159 0.0039088610 -0.023"
-      rpy="-1.5707963268 0 0"/>
-    <axis xyz="-0.0665291474 0 0.9977844820"/>
+      rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
     <dynamics damping="0.01" friction="0.0"/>
     <limit effort="0.5" velocity="20.0"/>
   </joint>
-    <!-- ====================================================== -->
+
+  <!-- ====================================================== -->
   <!-- LiDAR 2D                                               -->
   <!-- ====================================================== -->
 
