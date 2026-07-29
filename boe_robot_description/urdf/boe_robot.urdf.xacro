@@ -255,6 +255,7 @@
     </inertial>
   </link>
 
+  <!-- Khớp thụ động cho cả cụm caster đổi hướng quanh trục Z. -->
   <joint name="caster_rotation_joint" type="continuous">
     <parent link="caster_base_link"/>
     <child link="caster_rotation_link"/>
@@ -262,11 +263,11 @@
       xyz="-0.0361714130 0 -0.0106540966"
       rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <dynamics damping="0.02" friction="0.0"/>
-    <limit effort="0.5" velocity="10.0"/>
+    <dynamics damping="0.02" friction="0.001"/>
+    <limit effort="0.2" velocity="10.0"/>
   </joint>
 
-  <!-- Bánh caster có thể lăn tự do -->
+  <!-- Bánh caster hiển thị; collision vật lý đơn giản nằm trong SDF. -->
   <link name="caster_wheel_link">
     <visual>
       <origin
@@ -305,15 +306,16 @@
     </inertial>
   </link>
 
+  <!-- Khớp thụ động cho bánh caster lăn quanh trục Y. -->
   <joint name="caster_wheel_joint" type="continuous">
     <parent link="caster_rotation_link"/>
     <child link="caster_wheel_link"/>
     <origin
-      xyz="0.0179800159 0.0039088610 -0.023"
+      xyz="0.0179800159 0.0039088610 -0.0220196660"
       rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="0.01" friction="0.0"/>
-    <limit effort="0.5" velocity="20.0"/>
+    <dynamics damping="0.005" friction="0.001"/>
+    <limit effort="0.2" velocity="20.0"/>
   </joint>
 
   <!-- ====================================================== -->

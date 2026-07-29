@@ -15,9 +15,15 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <depend>gazebo_dev</depend>
+  <depend>gazebo_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>boe_robot_description</exec_depend>
-  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>gazebo_plugins</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
