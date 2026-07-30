@@ -28,6 +28,16 @@ amcl:
     resample_interval: 1
     robot_model_type: nav2_amcl::DifferentialMotionModel
     save_pose_rate: 0.5
+    # World navigation_test luôn spawn robot tại gốc tọa độ.
+    # AMCL dùng pose này ngay khi khởi động, không cần bấm
+    # 2D Pose Estimate thủ công trong RViz2.
+    set_initial_pose: true
+    always_reset_initial_pose: true
+    initial_pose:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      yaw: 0.0
     sigma_hit: 0.12
     tf_broadcast: true
     transform_tolerance: 0.3
