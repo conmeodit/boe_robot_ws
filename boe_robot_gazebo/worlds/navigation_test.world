@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="boe_navigation_test_world">
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <update_rate>30.0</update_rate>
+    </plugin>
+
+    <plugin
+      name="boe_caster_visual_plugin"
+      filename="libboe_caster_visual_plugin.so"/>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Hai mesh caster chỉ dùng để hiển thị và được plugin đồng bộ với robot. -->
+    <model name="boe_caster_rotation_visual">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://boe_robot_description/meshes/caster_rotation_link.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.796 0.824 0.937 1</ambient>
+            <diffuse>0.796 0.824 0.937 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="boe_caster_wheel_visual">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <pose>0 0 0 -1.5707963268 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://boe_robot_description/meshes/caster_wheel_link.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.05 0.05 0.05 1</ambient>
+            <diffuse>0.05 0.05 0.05 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Phòng kín 2.4 m x 2.0 m. -->
+    <model name="front_wall">
+      <static>true</static>
+      <pose>1.20 0 0.20 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.08 2.08 0.40</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.08 2.08 0.40</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.18 0.18 0.18 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="rear_wall">
+      <static>true</static>
+      <pose>-1.20 0 0.20 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.08 2.08 0.40</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.08 2.08 0.40</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.18 0.18 0.18 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="left_wall">
+      <static>true</static>
+      <pose>0 1.00 0.20 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.48 0.08 0.40</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.48 0.08 0.40</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.18 0.18 0.18 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="right_wall">
+      <static>true</static>
+      <pose>0 -1.00 0.20 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.48 0.08 0.40</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.48 0.08 0.40</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.18 0.18 0.18 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Các vật cản tạo đặc trưng cho scan matching và bài thử Nav2. -->
+    <model name="navigation_box">
+      <static>true</static>
+      <pose>0.48 -0.38 0.14 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 0.28</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.20 0.72 0.36 1</ambient>
+            <diffuse>0.20 0.72 0.36 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="navigation_cylinder">
+      <static>true</static>
+      <pose>-0.55 0.38 0.16 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.14</radius>
+              <length>0.32</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.14</radius>
+              <length>0.32</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.84 0.55 0.15 1</ambient>
+            <diffuse>0.84 0.55 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="ode_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>world</type>
+          <iters>100</iters>
+          <sor>1.3</sor>
+        </solver>
+        <constraints>
+          <cfm>0.00001</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>1.0</contact_max_correcting_vel>
+          <contact_surface_layer>0.0001</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>2.2 -2.2 1.65 0 0.55 2.35</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </world>
+</sdf>
