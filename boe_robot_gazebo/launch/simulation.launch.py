@@ -44,6 +44,10 @@ def generate_launch_description():
     )
 
     world_file = LaunchConfiguration('world')
+    extra_model_path = LaunchConfiguration('extra_model_path')
+    spawn_x = LaunchConfiguration('spawn_x')
+    spawn_y = LaunchConfiguration('spawn_y')
+    spawn_z = LaunchConfiguration('spawn_z')
 
     model_file = os.path.join(
         gazebo_share,
@@ -104,7 +108,11 @@ def generate_launch_description():
         ],
         output='screen',
         additional_env={
-            'GAZEBO_MODEL_PATH': clean_model_path,
+            'GAZEBO_MODEL_PATH': [
+                clean_model_path,
+                os.pathsep,
+                extra_model_path
+            ],
             'GAZEBO_MODEL_DATABASE_URI': ''
         }
     )
@@ -122,16 +130,36 @@ def generate_launch_description():
             '-timeout',
             '120.0',
             '-x',
-            '0.0',
+            spawn_x,
             '-y',
-            '0.0',
+            spawn_y,
             '-z',
-            '0.002'
+            spawn_z
         ]
     )
 
     return LaunchDescription([
         world_argument,
+        DeclareLaunchArgument(
+            'extra_model_path',
+            default_value=description_model_root,
+            description='Additional Gazebo model directory for world meshes'
+        ),
+        DeclareLaunchArgument(
+            'spawn_x',
+            default_value='0.0',
+            description='Initial robot X position in the Gazebo world'
+        ),
+        DeclareLaunchArgument(
+            'spawn_y',
+            default_value='0.0',
+            description='Initial robot Y position in the Gazebo world'
+        ),
+        DeclareLaunchArgument(
+            'spawn_z',
+            default_value='0.002',
+            description='Initial robot Z position in the Gazebo world'
+        ),
         gazebo_server_launch,
         gazebo_client,
         robot_state_publisher_node,
