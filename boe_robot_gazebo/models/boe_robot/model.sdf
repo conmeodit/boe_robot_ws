@@ -3,8 +3,11 @@
   <model name="boe_robot">
     <static>false</static>
     <self_collide>false</self_collide>
-    <!-- Cho Gazebo đưa robot về trạng thái ngủ khi đã đứng yên. -->
-    <allow_auto_disable>true</allow_auto_disable>
+    <!--
+      Robot phải tiếp tục nhận lực từ hai bánh khi Nav2 chỉnh yaw tại goal.
+      Không cho ODE đưa model về trạng thái ngủ sau khi dừng tịnh tiến.
+    -->
+    <allow_auto_disable>false</allow_auto_disable>
 
     <!--
       Gazebo gộp các chi tiết nối cố định vào base_link để tránh hệ ràng buộc
@@ -178,9 +181,15 @@
           <friction>
             <ode>
               <!-- Bám theo hướng lăn X, cho phép trượt ngang khi quay vi sai. -->
-              <mu>1.0</mu>
-              <mu2>0.8</mu2>
+              <!-- Bám cao theo hướng lăn để bánh không quay trơn. -->
+              <mu>5.0</mu>
+              <!--
+                Ma sát ngang thấp hơn để hai bánh có thể trượt ngang
+                một lượng nhỏ khi robot quay vi sai tại chỗ.
+              -->
+              <mu2>0.20</mu2>
               <fdir1>1 0 0</fdir1>
+              <slip2>0.01</slip2>
             </ode>
           </friction>
           <contact>
@@ -248,9 +257,10 @@
           <friction>
             <ode>
               <!-- Hai bánh dùng cùng quy ước trục X là hướng lăn. -->
-              <mu>1.0</mu>
-              <mu2>0.8</mu2>
+              <mu>5.0</mu>
+              <mu2>0.20</mu2>
               <fdir1>1 0 0</fdir1>
+              <slip2>0.01</slip2>
             </ode>
           </friction>
           <contact>
