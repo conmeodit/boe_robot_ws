@@ -5,6 +5,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.actions import ExecuteProcess
 from launch.actions import IncludeLaunchDescription
+from launch.actions import SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command
 from launch.substitutions import LaunchConfiguration
@@ -99,6 +100,11 @@ def generate_launch_description():
         '/usr/share/gazebo-11/models',
         description_model_root
     ])
+    complete_model_path = [
+        clean_model_path,
+        os.pathsep,
+        extra_model_path
+    ]
 
     # Tự khởi động Gazebo client với model path sạch.
     gazebo_client = ExecuteProcess(
@@ -108,11 +114,7 @@ def generate_launch_description():
         ],
         output='screen',
         additional_env={
-            'GAZEBO_MODEL_PATH': [
-                clean_model_path,
-                os.pathsep,
-                extra_model_path
-            ],
+            'GAZEBO_MODEL_PATH': complete_model_path,
             'GAZEBO_MODEL_DATABASE_URI': ''
         }
     )
@@ -159,6 +161,14 @@ def generate_launch_description():
             'spawn_z',
             default_value='0.002',
             description='Initial robot Z position in the Gazebo world'
+        ),
+        SetEnvironmentVariable(
+            name='GAZEBO_MODEL_PATH',
+            value=complete_model_path
+        ),
+        SetEnvironmentVariable(
+            name='GAZEBO_MODEL_DATABASE_URI',
+            value=''
         ),
         gazebo_server_launch,
         gazebo_client,

@@ -17,7 +17,9 @@ def generate_launch_description():
         navigation_share,
         'config'
     )
-    configuration_basename = 'boe_cartographer_2d.lua'
+    configuration_basename = LaunchConfiguration(
+        'configuration_basename'
+    )
     rviz_config_file = os.path.join(
         navigation_share,
         'config',
@@ -77,6 +79,11 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        DeclareLaunchArgument(
+            'configuration_basename',
+            default_value='boe_cartographer_2d.lua',
+            description='Cartographer Lua file from the package config folder'
+        ),
         DeclareLaunchArgument(
             'use_sim_time',
             default_value='true',
